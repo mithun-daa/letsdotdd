@@ -18,8 +18,12 @@
 
 	desc("Test everything");
 	task("test", function () {
-		console.log("tests go here");
-	});
+		var reporter = require('nodeunit').reporters.default;
+		reporter.run(['test'], null, function  (failures) {
+			if (failures) fail("Tests failed");
+			complete();
+		});
+	}, {async: true});
 
 	function nodeLintOptions () {
 		return {
