@@ -3,7 +3,7 @@
 
 	"use strict";
 
-	task("default", ["lint"]);
+	task("default", ["lint", "test"]);
 
 	desc("Lint everything");
 	task("lint", function () {
@@ -14,6 +14,11 @@
 		files.exclude("build");
 		var passed = lint.validateFileList(files.toArray(), nodeLintOptions(), {});
 		if(!passed) fail("Lint failed");
+	});
+
+	desc("Test everything");
+	task("test", function () {
+		console.log("tests go here");
 	});
 
 	function nodeLintOptions () {
